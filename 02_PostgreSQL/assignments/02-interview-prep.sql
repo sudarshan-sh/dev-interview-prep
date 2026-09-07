@@ -72,6 +72,7 @@ ALTER TABLE employee
 DROP COLUMN department_id;
 
 -- 8. What is the difference between DROP TABLE and TRUNCATE TABLE? (answer in a comment)
+DROP TABLE deletes the entire table structure along with its data, while TRUNCATE TABLE deletes only the data inside the table, leaving the structure intact for future use.
  -- ===== C. CONSTRAINTS =====
 -- 9. Add a UNIQUE constraint on the 'email' column of the Users table.
 
@@ -85,7 +86,7 @@ ALTER TABLE Products ADD CONSTRAINT positive_stocklevel CHECK (StockLevel >= 0);
 --     Employee(empid), such that deleting the employee sets manager_id to NULL.
 
 ALTER TABLE Department ADD CONSTRAINT fk_department_employee
-FOREIGN KEY (manager_id) REFERENCES Employee (empid);
+FOREIGN KEY (manager_id) REFERENCES Employee (empid) ON DELETE SET NULL;
 
 -- 12. Add a DEFAULT constraint so any new Employee row defaults 'city' to 'Unknown'.
 
@@ -134,4 +135,9 @@ LIMIT 3;
 -- ===== E. CONCEPTUAL (for interview rounds) =====
 -- 19. What happens if you try to DELETE an employee referenced by Project.incharge,
 --     but the FOREIGN KEY has ON DELETE NO ACTION instead of SET NULL? (answer in a comment)
+Since the project relies on the employee table so DB would restrict the deletion to maintain referential integrity resulting in a foreing key violation error.
+
+-- ==================================
 -- 20. Can a table have more than one UNIQUE constraint but only one PRIMARY KEY? Why? (answer in a comment)
+Yes, a table can have multiple UNIQUE constraints but only one PRIMARY KEY. Since PRIMARY KEY must be a unique value and not accept NULL values.
+While UNIQUE constraints cane be applied on the various values that can also accept the NULL values as well.
