@@ -81,3 +81,14 @@ UPDATE employee SET dept = 'Sales' WHERE empid IN (2, 5);
 UPDATE employee 
 SET salary=56000 WHERE empid=4
 RETURNING empid, name, salary;
+
+UPDATE employee 
+SET salary = CASE empid
+    WHEN 7 THEN 40000 -- Manish
+    WHEN 1 THEN 150000 -- Peeyush
+    WHEN 3 THEN 155000 -- Tushar
+    WHEN 6 THEN 50000  -- Manoj
+    WHEN 2 THEN 55000  -- Manish
+END
+WHERE empid IN (7, 1, 3, 6, 2)
+RETURNING empid, name, age, salary, city, dept;
