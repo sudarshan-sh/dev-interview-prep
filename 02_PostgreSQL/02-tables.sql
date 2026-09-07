@@ -76,3 +76,8 @@ ALTER TABLE employee DROP COLUMN dept;
 
 -- update rows with the department value
 UPDATE employee SET dept = 'Sales' WHERE empid IN (2, 5);
+
+-- instead of seeing 'UPDATE 1', the RETURNING clause allows to see the modified rows
+UPDATE employee 
+SET salary=56000 WHERE empid=4
+RETURNING empid, name, salary;
