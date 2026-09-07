@@ -12,6 +12,9 @@ SELECT * FROM employee WHERE dept IN ('Sales', 'Technology');
 -- sort data (ORDER BY)
 SELECT * FROM employee ORDER BY salary DESC;
 
+-- sort data for Accounts department based on Salary
+SELECT * from employee WHERE dept='Accounts' ORDER BY salary DESC;
+
 -- limit the number of rows returned (LIMIT)
 SELECT * FROM employee ORDER BY salary DESC LIMIT 5;
 
