@@ -108,9 +108,7 @@ ALTER COLUMN city
 SET DEFAULT 'Unknown';
 
 -- 13. Write a command to drop the CHECK constraint you added in Q10.
-
-ALTER TABLE Products
-DROP CHECK positive_stocklevel;
+ALTER TABLE Products DROP CONSTRAINT positive_stocklevel;
 
 
  -- ===== D. QUERIES (FILTERING / SORTING / DISTINCT) =====
