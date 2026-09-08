@@ -62,3 +62,44 @@ SELECT name from students WHERE rollno IN (
 
 -- 9. Find students who have NOT enrolled in any batch of the
 --    'Full Stack Web Development' course.
+
+-- =========================================
+-- More practice (Employee schema)
+-- =========================================
+
+-- Schema:
+-- Employee
+--   - empid   int      primary key
+--   - name    varchar
+--   - age     int
+--   - salary  float
+
+-- 10. Select all employee records from Employee table where salary is greater than the average salary.
+SELECT * from employee WHERE salary > (
+    SELECT AVG(salary) from employee
+);
+
+-- 11. Find selected oldest employee record from Employee table.
+SELECT * from employee WHERE age = (
+    SELECT MAX(age) from employee
+);
+
+-- 12. Find second lowest salary from Employee table.
+SELECT DISTINCT(salary) from employee
+ORDER BY salary ASC
+OFFSET 1 LIMIT 1;
+-- OR --
+SELECT MIN(salary) FROM employee
+WHERE salary > (SELECT MIN(salary) FROM employee);
+
+-- 13. Find all the employee records whose age is above average age and salary is below average salary of employees.
+SELECT * from employee WHERE age > (
+    SELECT AVG(age) from employee
+) AND salary < (
+    SELECT AVG(salary) from employee
+);
+
+-- 14. Find third maximum salary from the Employee table.
+SELECT DISTINCT(salary) from employee
+ORDER BY salary DESC
+OFFSET 2 LIMIT 1;
