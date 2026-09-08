@@ -73,7 +73,8 @@ VALUES
     (1, 'Aman Verma',   'aman.verma@example.com',   '9876543210'),
     (2, 'Priya Singh',  'priya.singh@example.com',  '9876543211'),
     (3, 'Rohit Sharma', 'rohit.sharma@example.com', '9876543212'),
-    (4, 'Neha Gupta',   'neha.gupta@example.com',   '9876543213');
+    (4, 'Neha Gupta',   'neha.gupta@example.com',   '9876543213'),
+    (5, 'Karan Mehta',  'karan.mehta@example.com',  '9876543214');
 
 -- 4. student_batches
 INSERT INTO student_batches (id, rollno, batchid, joiningdate)
