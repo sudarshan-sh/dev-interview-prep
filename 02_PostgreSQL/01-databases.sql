@@ -3,6 +3,7 @@
 -- =========================================
 
 -- 1. CREATE DATABASE
+CREATE DATABASE sdb;
 CREATE DATABASE db1;
 CREATE DATABASE sdb_new;
 
