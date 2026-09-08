@@ -41,6 +41,7 @@ INNER JOIN batches b ON b.batchid = sb.batchid
 INNER JOIN courses c ON c.courseid = b.courseid;
 
 -- 6. List pairs of students who are enrolled in the same batch as each other.
+----- CASE OF SELF JOIN -----
 SELECT sb1.batchid, s1.name, s2.name from student_batches sb1
 INNER JOIN student_batches sb2 ON sb2.batchid = sb1.batchid AND sb1.rollno < sb2.rollno
 INNER JOIN students s1 ON s1.rollno = sb1.rollno
