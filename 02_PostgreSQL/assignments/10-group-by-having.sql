@@ -44,3 +44,8 @@ INNER JOIN batches b ON b.batchid = sb.batchid
 INNER JOIN courses c ON c.courseid = b.courseid
 GROUP BY c.coursename
 HAVING COUNT(sb.rollno) > 2;
+
+-- 6. Which specific batches have exceeded a safety threshold of more than 2 student enrollments, and what are those batch IDs?
+SELECT sb.batchid, COUNT(sb.rollno) AS total_enrolments from student_batches sb
+GROUP BY sb.batchid
+HAVING COUNT(sb.rollno) > 2;
