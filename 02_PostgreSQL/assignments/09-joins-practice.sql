@@ -55,3 +55,38 @@ GROUP BY c.courseid, c.coursename ORDER BY total_batches DESC;
 -- 8. List students who are NOT enrolled in any batch, using a JOIN instead of a subquery.
 SELECT s.rollno, s.name from students s
 LEFT JOIN student_batches sb ON sb.rollno=s.rollno WHERE sb.rollno IS NULL;
+
+-- =========================================
+-- More practice (SQL Join)
+-- =========================================
+
+-- 9. Find all the batchid which belong to the course with coursename 'Data Science'.
+SELECT b.batchid, c.coursename from batches b
+INNER JOIN courses c ON c.courseid = b.courseid
+WHERE c.coursename = 'Data Science';
+
+-- 10. Select rollno of students who are enrolled in the batches of the 'Data Science' course.
+SELECT sb.rollno, c.coursename from student_batches sb
+INNER JOIN batches b ON b.batchid = sb.batchid
+INNER JOIN courses c ON c.courseid = b.courseid
+WHERE c.coursename = 'Data Science';
+
+
+-- 11. Populate the joining dates of all the students along with their rollno,
+--     for batches of the 'Data Science' course.
+SELECT sb.rollno, s.name, c.coursename, sb.joiningdate from students s
+INNER JOIN student_batches sb ON sb.rollno = s.rollno
+INNER JOIN batches b ON b.batchid = sb.batchid
+INNER JOIN courses c ON c.courseid = b.courseid
+WHERE c.coursename = 'Data Science';
+
+-- 12. Select student rollno, name and joining date of all the students enrolled in batch 101.
+SELECT sb.rollno, s.name, sb.joiningdate from students s
+INNER JOIN student_batches sb ON sb.rollno = s.rollno
+WHERE sb.batchid = 101;
+
+-- 13. Select all the student names, batchid and course names, of students who have taken admission in any batch.
+SELECT s.name, c.coursename, sb.batchid from students s
+INNER JOIN student_batches sb ON sb.rollno = s.rollno
+INNER JOIN batches b ON b.batchid = sb.batchid
+INNER JOIN courses c ON c.courseid = b.courseid;
