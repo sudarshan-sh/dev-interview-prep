@@ -56,3 +56,10 @@ FROM students s
 JOIN student_batches sb ON sb.rollno = s.rollno
 GROUP BY s.rollno, s.name
 HAVING COUNT(sb.batchid) > 1;
+
+-- 7. GROUP BY + ORDER BY together - group first, then sort the resulting groups
+-- number of students per standard (note: standard is independent of batch -
+-- students in the same batch can be preparing for different standards/exams)
+SELECT COUNT(rollno), standard FROM students
+GROUP BY standard
+ORDER BY standard DESC;

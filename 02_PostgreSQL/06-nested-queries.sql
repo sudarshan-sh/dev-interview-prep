@@ -85,6 +85,18 @@ VALUES
     (4, 4, 103, '2026-02-10'),
     (5, 1, 104, '2026-01-15');
 
+-- 5. add 'standard' to students - independent of batch, since students in the
+--    same batch can be preparing for different exams/standards
+ALTER TABLE students ADD COLUMN standard varchar(10);
+
+UPDATE students SET standard = CASE rollno
+    WHEN 1 THEN '3rd'
+    WHEN 2 THEN '2nd'
+    WHEN 3 THEN '4th'
+    WHEN 4 THEN '3rd'
+    WHEN 5 THEN '5th'
+END;
+
 -- =========================================
 -- QUESTIONS
 -- =========================================
