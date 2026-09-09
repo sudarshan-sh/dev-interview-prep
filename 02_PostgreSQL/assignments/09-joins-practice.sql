@@ -48,5 +48,10 @@ INNER JOIN students s1 ON s1.rollno = sb1.rollno
 INNER JOIN students s2 ON s2.rollno = sb2.rollno;
 
 -- 7. List each course along with the number of batches offered for it.
+SELECT c.courseid, c.coursename, COUNT(b.batchid) AS total_batches from courses c
+LEFT JOIN batches b ON b.courseid = c.courseid
+GROUP BY c.courseid, c.coursename ORDER BY total_batches DESC;
 
 -- 8. List students who are NOT enrolled in any batch, using a JOIN instead of a subquery.
+SELECT s.rollno, s.name from students s
+LEFT JOIN student_batches sb ON sb.rollno=s.rollno WHERE sb.rollno IS NULL;
