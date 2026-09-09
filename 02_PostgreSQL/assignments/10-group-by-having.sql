@@ -55,3 +55,10 @@ SELECT SUM(salary), dept from employee
 GROUP BY dept
 HAVING SUM(salary) > 60000
 ORDER BY SUM(salary) DESC;
+
+-- 8. Mujhe un courses ki list do jinki seat capacity 30 se zyada hai, lekin sirf un batches ko count karna jo Weekend (Sat-Sun) ko chalte hain.
+SELECT c.coursename, SUM(b.size) from courses c
+INNER JOIN batches b ON b.courseid = c.courseid
+WHERE b.days='Sat-Sun'
+GROUP BY c.coursename
+HAVING SUM(b.size) > 30;
