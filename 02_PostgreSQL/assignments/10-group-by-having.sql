@@ -49,3 +49,9 @@ HAVING COUNT(sb.rollno) > 2;
 SELECT sb.batchid, COUNT(sb.rollno) AS total_enrolments from student_batches sb
 GROUP BY sb.batchid
 HAVING COUNT(sb.rollno) > 2;
+
+-- 7. Find the total salary spend department wise where total salary of department is greater than 60,000
+SELECT SUM(salary), dept from employee
+GROUP BY dept
+HAVING SUM(salary) > 60000
+ORDER BY SUM(salary) DESC;
