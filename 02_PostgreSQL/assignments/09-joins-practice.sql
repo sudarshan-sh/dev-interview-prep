@@ -90,3 +90,17 @@ SELECT s.name, c.coursename, sb.batchid from students s
 INNER JOIN student_batches sb ON sb.rollno = s.rollno
 INNER JOIN batches b ON b.batchid = sb.batchid
 INNER JOIN courses c ON c.courseid = b.courseid;
+
+-- 14. List students who are enrolled in more than one batch, using a JOIN instead of a subquery.
+SELECT s.rollno, s.name, COUNT(sb.batchid) AS enrolled_batches 
+from students s
+INNER JOIN student_batches sb ON sb.rollno = s.rollno
+GROUP BY s.rollno, s.name
+HAVING COUNT(sb.batchid) > 1;
+
+-- 15. List course names that have more than one batch scheduled.
+SELECT c.coursename, COUNT(b.batchid) AS batch_count
+FROM courses c
+INNER JOIN batches b ON b.courseid = c.courseid
+GROUP BY c.courseid, c.coursename
+HAVING COUNT(b.batchid) > 1;
